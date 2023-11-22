@@ -140,7 +140,7 @@ function createUser($conn, $name, $email, $username, $pwd, $phone_no)
 
 function emptyInputLogin($email, $pwd)
 {
-    $result;
+    $result ;
     if (empty($email) || empty($pwd)) {
         $result = true;
     } else {
