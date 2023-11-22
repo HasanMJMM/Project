@@ -103,7 +103,7 @@
                                 <img src="images/Admin/Report.jpg"alt="Image" class="card-image" style="width: 130px;">
                                 <h5 class="card-title">Report Generate</h5>
                                 <p class="card-text">Manage Report Generate here.</p>
-                                <a href="report.php" class="btn btn-primary">Go to Report Genarate</a>
+                                <a href="../report/Report.php" class="btn btn-primary update-button">Go to Report Generate</a>
                             </div>
                         </div>
                     </div>

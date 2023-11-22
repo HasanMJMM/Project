@@ -75,38 +75,45 @@ class Admin
         return ($count > 0);
     }
 
-    public function Emp_Registration($CID, $Name, $PhoneNo)
+    public function Emp_Registration($CID, $ID, $Name)
     {
         $dbcon = new DbConnector();
         $con = $dbcon->getConnection();
 
-        $query1 = "INSERT INTO conductor(Conductor_ID, Name, Contact_No) VALUES (?, ?, ?)";
+        $query1 = "INSERT INTO conductor(Conductor_ID, Bus_ID, Name) VALUES (?, ?, ?)";
 
         $pstmt1 = $con->prepare($query1);
         $pstmt1->bindValue(1, $CID);
-        $pstmt1->bindValue(2, $Name);
-        $pstmt1->bindValue(3, $PhoneNo);
+        $pstmt1->bindValue(2, $ID);
+        $pstmt1->bindValue(3, $Name);
 
-        if ($pstmt1->execute()) {
-            return true;
-        } else {
-            return false;
+        try {
+            if ($pstmt1->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (\PDOException $EX) {
+            echo $EX->getMessage();
         }
     }
 
-    public function EmpExists($CID)
-    {
-        $dbcon = new DbConnector();
-        $con = $dbcon->getConnection();
+    public function EmpExists($CID, $ID)
+{
+    $dbcon = new DbConnector();
+    $con = $dbcon->getConnection();
 
-        $query = "SELECT COUNT(*) FROM conductor WHERE Conductor_ID = ?";
-        $pstmt = $con->prepare($query);
-        $pstmt->bindValue(1, $CID);
-        $pstmt->execute();
+    $query = "SELECT COUNT(*) FROM conductor WHERE Conductor_ID = ? AND Bus_ID = ?";
+    $pstmt = $con->prepare($query);
+    $pstmt->bindValue(1, $CID);
+    $pstmt->bindValue(2, $ID);
+    $pstmt->execute();
 
-        $count = $pstmt->fetchColumn();
+    $count = $pstmt->fetchColumn();
 
-        return ($count > 0);
-    }
+    return ($count > 0);
+}
+
+    
 }
 ?>
