@@ -5,10 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ease Travels</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./js/index.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
@@ -19,8 +24,10 @@
     <div class="fixed-top ">
         <nav class="navbar navbar-expand-lg NAVBAR">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69" class="d-inline-block align-text-top" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#"><img src="./Images/Logo.png" alt="Logo" width="100" height="69"
+                        class="d-inline-block align-text-top" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
@@ -34,7 +41,8 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon>
+                        <ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go
+                                back</span>></ion-icon>
 
                     </div>
                 </div>
@@ -81,12 +89,12 @@
         AND schedule.Date = ?";
         $stmt_CB = $pdo->prepare($sql);
         $stmt_CB->execute([$departureLocation, $arrivalLocation, $departureDate]);
-    ?>
+        ?>
         <?php
         if ($stmt_CB->rowCount() > 0) {
             echo '<div class="container mt-3 mb-3">';
             while ($row = $stmt_CB->fetch(PDO::FETCH_ASSOC)) {
-        ?>
+                ?>
                 <?php echo '<div class="p-5 text-center Choose-bus--container rounded-3">'; ?>
                 <h1 class="Heading-in-choose-shedule">
                     <?php echo $row['Start_Location']; ?> -
@@ -131,7 +139,8 @@
                                 <?php echo $row['Date'] ?>
                             </small>
                             <br />
-                            <a href="SeatSelection.php?var=<?php echo urlencode($row['Schedule_ID']); ?>"><button type="button" class="btn button-choose-sear mt-2">Choose
+                            <a href="SeatSelection.php?var=<?php echo urlencode($row['Schedule_ID']); ?>"><button type="button"
+                                    class="btn button-choose-sear mt-2">Choose
                                     Seat</button></a>
 
                         </div>
@@ -140,7 +149,7 @@
                 </div>
                 <?php echo '</div>'; ?>
                 <?php echo '</br>'; ?>
-    <?php
+                <?php
             }
             echo '</div>';
         } else {
@@ -155,20 +164,12 @@
     <footer class="border-top footerbackground">
         <div class="row">
             <div class="col-12 col-md ">
-<<<<<<< HEAD
-                <span>
-                    <img class="mb-2" src="images/logo2.jpg" alt="" width="125" height="87">
-                </span>
-                <span>
-                    <p style="color: pink;">Make Your Journey Easy</p>
-=======
                 <div class="row">
                     <span>
                         <img class="mb-2" src="./Images/Logo.png" alt="" width="125" height="87">
                     </span>
                     <span>
                         <p style="color: pink;">Make Your Journey Easy</p>
->>>>>>> 7607bdb142b1b2237127bf99d53a842233a5b118
 
                     </span>
                     <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
@@ -210,11 +211,7 @@
             <div class="col-6 col-md">
                 <h5 style="color: pink;"">Links</h5>
                 <ul class=" list-unstyled text-small">
-<<<<<<< HEAD
-                    <li class="mb-1"><a class="nav-link" aria-current="page" href="#">
-=======
                     <li class="mb-1"><a class="nav-link" aria-current="page" href="commanUser.php">
->>>>>>> 7607bdb142b1b2237127bf99d53a842233a5b118
                             <span class="coustomIcon">
                                 <ion-icon name="home-outline"></ion-icon>
                             </span>
@@ -259,7 +256,8 @@
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
+                            href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
