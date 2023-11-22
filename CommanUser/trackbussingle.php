@@ -72,7 +72,7 @@ session_start();
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a href="./SeatSelection.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
+                        <a href="./trackBusses.php"><ion-icon name="arrow-back-circle-outline" class="mt-3 NAVLINKSICON"><span>go back</span>></ion-icon></a>
                     </div>
                 </div>
             </div>
@@ -336,8 +336,7 @@ session_start();
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
