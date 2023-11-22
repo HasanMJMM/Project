@@ -480,7 +480,117 @@ if (mysqli_num_rows($result) > 0) {
             </div>
         </div>
         <!--Seat Select POP UP End-->
+
         <!--Body Part End-->
+
+    </div>
+
+    <?php
+    $sql5 = "SELECT Space FROM schedule WHERE Schedule_ID = '$SHID'";
+    $stmt5 = mysqli_prepare($connection, $sql5);
+    if ($stmt5) {
+        mysqli_stmt_execute($stmt5);
+        mysqli_stmt_bind_result($stmt5, $spaceResult);
+        while (mysqli_stmt_fetch($stmt5)) {
+            $space = $spaceResult;
+        }
+        // Close statement
+        mysqli_stmt_close($stmt5);
+    } else {
+        echo "Error in preparing statement: " . mysqli_error($connection);
+    }
+    ?>
+
+    <div class="row mt-4" style="padding: 10%;">
+        <div class="text-center" style="background-color: #f3c001; border-radius:10px;">
+            <div class="row">
+                <h1>Backage Courier Service</h1>
+            </div>
+            <div class="row mt-2">
+                <label style="color: #000032; font-size:15px;">You can see filled space Hera</label>
+                <div class="text-center">
+                    <div class="progress " role="progressbar" aria-label="Example with label" aria-valuenow="<?PHP echo $space; ?>" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <?PHP echo $space; ?>%; background-color:#000032;"><?PHP echo $space; ?>%</div>
+                    </div>
+                </div>
+            </div>
+            <form>
+                <!-- Existing form content with added IDs for the input elements -->
+                <div class="row mt-2">
+                    <div class="col">
+                        <label style="color: #000032; font-size:15px;">Select The Category of your goods</label>
+                        <select id="goodsCategory" class="form-select" multiple aria-label="Multiple select example" style="background-color:#000032; color:#f3c001;">
+                            <option selected class="text-center">Select The Category</option>
+                            <option value="500">Wood</option>
+                            <option value="1080">Meat</option>
+                            <option value="200">Clothes</option>
+                            <option value="2500">Glass</option>
+                            <option value="500">Electronics</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label style="color: #000032; font-size:15px;">Enter the weight of your goods in Kg</label>
+                        <div class="d-flex justify-content-center" style="height: 80%;">
+                            <input id="goodsWeight" type="number" class="form-control" placeholder="Weight" aria-label="Weight" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label style="color: #000032; font-size:10px;">Your package's space percentage of total Space</label>
+                        <div class="text-center d-flex justify-content-center align-items-center" style="height: 80%; width: 100%; border-radius:10px; background-color:#000032;">
+                            <label id="percentageLabel" style="color: #f3c001; font-size:20px;">Percentage</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <div class="text-center d-flex justify-content-center align-items-center" style="height: 100%; width: 100%; border-radius:10px; background-color:#000032;">
+                            <label id="amountLabel" style="color: #f3c001; font-size:20px;">Amount</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex justify-content-center">
+                            <a href="checkoutforCourier.php"><button class="btn btn-find-busses" style="width: 50rem;" type="submit"> Book Space</button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <script>
+                // Get references to the select and input elements using IDs
+                const selectGoods = document.getElementById('goodsCategory');
+                const inputWeight = document.getElementById('goodsWeight');
+                const percentageLabel = document.getElementById('percentageLabel');
+                const amountLabel = document.getElementById('amountLabel');
+
+                // Function to calculate percentage and amount based on user input
+                const calculate = () => {
+                    const selectedOption = selectGoods.options[selectGoods.selectedIndex];
+                    const goodsDensity = parseFloat(selectedOption.value);
+                    const weight = parseFloat(inputWeight.value);
+
+                    if (!isNaN(goodsDensity) && !isNaN(weight) && weight > 0) {
+                        const volume = weight / goodsDensity;
+                        const percentage = (volume / 1) * 100; // Assuming 1 is the total available bus space in cubic meters
+
+                        // Calculate amount (20 rupees per 1% of bus space)
+                        const amount = percentage * 1000;
+
+                        // Update labels with calculated values
+                        percentageLabel.textContent = `${percentage.toFixed(2)}%`;
+                        amountLabel.textContent = `Rs${amount.toFixed(2)}`;
+                    } else {
+                        percentageLabel.textContent = 'Percentage';
+                        amountLabel.textContent = 'Amount';
+                    }
+                };
+
+                // Event listeners for select and input fields to trigger calculation
+                selectGoods.addEventListener('change', calculate);
+                inputWeight.addEventListener('input', calculate);
+
+                // Initial calculation when the page loads (if needed)
+                calculate();
+            </script>
+        </div>
     </div>
     </div>
     </div>
@@ -583,8 +693,7 @@ if (mysqli_num_rows($result) > 0) {
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>
