@@ -175,8 +175,7 @@ $otpm = $_SESSION['otpm'];
             <div class="col-6 col-md">
                 <h5 style="color: pink;">Contact us</h5>
                 <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
+                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
                             <span class="coustomIcon">
                                 <ion-icon name="location-outline"></ion-icon>
                             </span>

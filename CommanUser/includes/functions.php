@@ -125,10 +125,11 @@ function createUser($conn, $name, $email, $username, $pwd, $phone_no)
     }
 
     // Hash the password
-    $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+    // $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
+    $hashedPwd = md5($pwd);
 
     // Bind parameters and execute the statement
-    mysqli_stmt_bind_param($stmt, "ssssss", $userID, $name, $email, $username, $hashedPwd, $phone_no);
+    mysqli_stmt_bind_param($stmt, "ssssss", $userID, $name, $email, $username, $pwd, $phone_no);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -150,37 +151,25 @@ function emptyInputLogin($email, $pwd)
 }
 function LoginUser($conn, $email, $pwd)
 {
-    
+
     $uidExist = uidExists($conn, $email, $pwd);
-    echo "<pre>";
-    print_r($uidExist);
-    echo "<pre>";
     if ($uidExist === false) {
-
-
         header("Location:../sign_in.php?error=wronglogin1");
         exit();
     }
 
+    if ($uidExist["Password"] == $pwd) {
+        $checkhPwd = true;
+    } else {
+        $checkhPwd = false;
+    }
 
-    $hashedPwdnew = password_hash('12345678', PASSWORD_DEFAULT);
 
+    $storedHashedPwd = $uidExist["Password"];
 
-    $pwdHashed =  $uidExist["Password"];
-    $checkhPwd = password_verify('12345678', $hashedPwdnew);
-
-    $bool = false;
-    echo "<br>";
-    echo "boolean value >>>" . $checkhPwd;
-    echo "<br>";
-    echo "<br>";
-    echo "checkpwd   :   ";
-    echo $checkhPwd;
-    echo "<br>";
 
     if ($checkhPwd === false) {
-        echo "hiiiiiiiiiiii";
-        // header("Location:../sign_in.php?error=wronglogin2");
+        header("Location:../sign_in.php?error=wronglogin2");
 
         exit();
     } else if ($checkhPwd === true) {
@@ -195,14 +184,11 @@ function LoginUser($conn, $email, $pwd)
         $role = $_SESSION["role"];
 
         if ($role == 'pasanger') {
-            // Redirect unauthorized users
             header("Location:../commanUser.php");
-            exit();
         } elseif ($role == 'conductor') {
-
             header("Location:../../Conductor_Dashboard/home.php");
         } else {
-            echo "newwww";
+            header("Location:../../Admin_dashboard/addmin_dashboard.php");
         }
     }
 }
