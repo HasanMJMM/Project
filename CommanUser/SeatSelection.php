@@ -515,82 +515,127 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
             </div>
             <form>
-                <!-- Existing form content with added IDs for the input elements -->
                 <div class="row mt-2">
-                    <div class="col">
-                        <label style="color: #000032; font-size:15px;">Select The Category of your goods</label>
-                        <select id="goodsCategory" class="form-select" multiple aria-label="Multiple select example" style="background-color:#000032; color:#f3c001;">
-                            <option selected class="text-center">Select The Category</option>
-                            <option value="500">Wood</option>
-                            <option value="1080">Meat</option>
-                            <option value="200">Clothes</option>
-                            <option value="2500">Glass</option>
-                            <option value="500">Electronics</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label style="color: #000032; font-size:15px;">Enter the weight of your goods in Kg</label>
-                        <div class="d-flex justify-content-center" style="height: 80%;">
-                            <input id="goodsWeight" type="number" class="form-control" placeholder="Weight" aria-label="Weight" aria-describedby="basic-addon1">
+                    <div class="col" style="padding: 10px;">
+                        <div class="row">
+                            <input type="text" name="SenderName" class="form-control form-control-lg" placeholder="Sender's Name" />
+                        </div>
+                        <div class="row">
+                            <input type="number" name="Senderpno" class="form-control form-control-lg" placeholder="Sender's Phone Number" />
                         </div>
                     </div>
-                    <div class="col">
-                        <label style="color: #000032; font-size:10px;">Your package's space percentage of total Space</label>
-                        <div class="text-center d-flex justify-content-center align-items-center" style="height: 80%; width: 100%; border-radius:10px; background-color:#000032;">
-                            <label id="percentageLabel" style="color: #f3c001; font-size:20px;">Percentage</label>
-                        </div>
+                    <div class="col" style="padding: 10px;>
+                        <div class=" row">
+                        <input type="text" name="RecieverName" class="form-control form-control-lg" placeholder="Reciever's Name" />
+                    </div>
+                    <div class="row">
+                        <input type="number" name="Recieverpno" class="form-control form-control-lg" placeholder="Reciever's Phone Number" />
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col">
-                        <div class="text-center d-flex justify-content-center align-items-center" style="height: 100%; width: 100%; border-radius:10px; background-color:#000032;">
-                            <label id="amountLabel" style="color: #f3c001; font-size:20px;">Amount</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="d-flex justify-content-center">
-                            <a href="checkoutforCourier.php"><button class="btn btn-find-busses" style="width: 50rem;" type="submit"> Book Space</button></a>
-                        </div>
-                    </div>
+                <div class="col">
+                    <label for="from" class="form-label">From:</label>
+                    <select name="from_location" id="from_location" class="form-select form-select-sm" aria-label="Large select example" style="background-color: #000032; color: #f3c001">
+                        <option selected>Badulla</option>
+                        <option value="Bandarawela">Bandarawela</option>
+                        <option value="Diyathalawa">Diyathalawa</option>
+                        <option value="Haputale">Haputale</option>
+                        <option value="Belihuloya">Belihuloya</option>
+                        <option value="Balangoda">Balangoda</option>
+                        <option value="Pelmadulla">Pelmadulla</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Ratnapura">Ratnapura</option>
+                    </select>
                 </div>
-            </form>
-            <script>
-                // Get references to the select and input elements using IDs
-                const selectGoods = document.getElementById('goodsCategory');
-                const inputWeight = document.getElementById('goodsWeight');
-                const percentageLabel = document.getElementById('percentageLabel');
-                const amountLabel = document.getElementById('amountLabel');
-
-                // Function to calculate percentage and amount based on user input
-                const calculate = () => {
-                    const selectedOption = selectGoods.options[selectGoods.selectedIndex];
-                    const goodsDensity = parseFloat(selectedOption.value);
-                    const weight = parseFloat(inputWeight.value);
-
-                    if (!isNaN(goodsDensity) && !isNaN(weight) && weight > 0) {
-                        const volume = weight / goodsDensity;
-                        const percentage = (volume / 1) * 100; // Assuming 1 is the total available bus space in cubic meters
-
-                        // Calculate amount (20 rupees per 1% of bus space)
-                        const amount = percentage * 1000;
-
-                        // Update labels with calculated values
-                        percentageLabel.textContent = `${percentage.toFixed(2)}%`;
-                        amountLabel.textContent = `Rs${amount.toFixed(2)}`;
-                    } else {
-                        percentageLabel.textContent = 'Percentage';
-                        amountLabel.textContent = 'Amount';
-                    }
-                };
-
-                // Event listeners for select and input fields to trigger calculation
-                selectGoods.addEventListener('change', calculate);
-                inputWeight.addEventListener('input', calculate);
-
-                // Initial calculation when the page loads (if needed)
-                calculate();
-            </script>
+                <div class="col">
+                    <label for="to" class="form-label">To:</label>
+                    <select name="to_location" id="to_location" class="form-select form-select-sm" aria-label="Large select example" style="background-color: #000032; color: #f3c001">
+                        <option selected>Badulla</option>
+                        <option value="Bandarawela">Bandarawela</option>
+                        <option value="Diyathalawa">Diyathalawa</option>
+                        <option value="Haputale">Haputale</option>
+                        <option value="Belihuloya">Belihuloya</option>
+                        <option value="Balangoda">Balangoda</option>
+                        <option value="Pelmadulla">Pelmadulla</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Ratnapura">Ratnapura</option>
+                    </select>
+                </div>
         </div>
+        <div class="row mt-2">
+            <div class="col">
+                <label style="color: #000032; font-size:15px;">Select The Category of your goods</label>
+                <select id="goodsCategory" class="form-select" multiple aria-label="Multiple select example" style="background-color:#000032; color:#f3c001;">
+                    <option selected class="text-center">Select The Category</option>
+                    <option value="500">Wood</option>
+                    <option value="1080">Meat</option>
+                    <option value="200">Clothes</option>
+                    <option value="2500">Glass</option>
+                    <option value="500">Electronics</option>
+                </select>
+            </div>
+            <div class="col">
+                <label style="color: #000032; font-size:15px;">Enter the weight of your goods in Kg</label>
+                <div class="d-flex justify-content-center" style="height: 80%;">
+                    <input id="goodsWeight" type="number" class="form-control" placeholder="Weight" aria-label="Weight" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col">
+                <label style="color: #000032; font-size:10px;">Your package's space percentage of total Space</label>
+                <div class="text-center d-flex justify-content-center align-items-center" style="height: 80%; width: 100%; border-radius:10px; background-color:#000032;">
+                    <label id="percentageLabel" style="color: #f3c001; font-size:20px;">Percentage</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="text-center d-flex justify-content-center align-items-center" style="height: 100%; width: 100%; border-radius:10px; background-color:#000032;">
+                    <label id="amountLabel" style="color: #f3c001; font-size:20px;">Amount</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="d-flex justify-content-center">
+                    <a href="checkoutforCourier.php"><button class="btn btn-find-busses" style="width: 50rem;" type="submit"> Book Space</button></a>
+                </div>
+            </div>
+        </div>
+        </form>
+        <script>
+            // Get references to the select and input elements using IDs
+            const selectGoods = document.getElementById('goodsCategory');
+            const inputWeight = document.getElementById('goodsWeight');
+            const percentageLabel = document.getElementById('percentageLabel');
+            const amountLabel = document.getElementById('amountLabel');
+
+            // Function to calculate percentage and amount based on user input
+            const calculate = () => {
+                const selectedOption = selectGoods.options[selectGoods.selectedIndex];
+                const goodsDensity = parseFloat(selectedOption.value);
+                const weight = parseFloat(inputWeight.value);
+
+                if (!isNaN(goodsDensity) && !isNaN(weight) && weight > 0) {
+                    const volume = weight / goodsDensity;
+                    const percentage = (volume / 1) * 100; // Assuming 1 is the total available bus space in cubic meters
+
+                    // Calculate amount (20 rupees per 1% of bus space)
+                    const amount = percentage * 1000;
+
+                    // Update labels with calculated values
+                    percentageLabel.textContent = `${percentage.toFixed(2)}%`;
+                    amountLabel.textContent = `Rs${amount.toFixed(2)}`;
+                } else {
+                    percentageLabel.textContent = 'Percentage';
+                    amountLabel.textContent = 'Amount';
+                }
+            };
+
+            // Event listeners for select and input fields to trigger calculation
+            selectGoods.addEventListener('change', calculate);
+            inputWeight.addEventListener('input', calculate);
+
+            // Initial calculation when the page loads (if needed)
+            calculate();
+        </script>
+    </div>
     </div>
     </div>
     </div>

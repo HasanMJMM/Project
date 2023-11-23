@@ -188,7 +188,7 @@ function LoginUser($conn, $email, $pwd)
         } elseif ($role == 'conductor') {
             header("Location:../../Conductor_Dashboard/home.php");
         } else {
-            header("Location:../../Admin_dashboard/addmin_dashboard.php");
+            header("Location:../../Admin_dashboard/dashboard-page.php");
         }
     }
 }
