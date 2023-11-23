@@ -126,9 +126,7 @@ $userID = $_SESSION["userid"];
                   <div class="col col-nav-div">
                     <a href="./expenses.php"><img class="iconImage" src="./icons/money-check-dollar-pen-svgrepo-com.svg" /></a>
                   </div>
-                  <div class="col col-nav-div">
-                    <a href="./profile.php"><img class="iconImage" src="./icons/profile-1336-svgrepo-com.svg" /></a>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -314,39 +312,22 @@ $userID = $_SESSION["userid"];
 
                 // Call generateTicketDetails initially to display initial details
                 generateTicketDetails();
-               
               </script>
             </div>
           </div>
         </div>
         <!-- location sos -->
         <div class="row">
-          <div class="col-6">
-            <div class="text-center" style="
+          <div class="text-center" style="
                   background-color: #000032;
                   width: 8rem;
                   padding: 15%;
                   border-radius: 5px;
                   color: #f3c001;
                 ">
-              <div class="card-body">
-                <small style="font-size: 10px">Current Location : </small>
-                <label id="currentLocation">location 1</label>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="text-center" style="
-                  background-color: #000032;
-                  width: 8rem;
-                  padding: 15%;
-                  border-radius: 5px;
-                  color: #f3c001;
-                ">
-              <div class="card-body">
-                <small style="font-size: 10px">Next Location :</small>
-                <label>location 2</label>
-              </div>
+            <div class="card-body">
+              <small style="font-size: 10px">Current Location : </small>
+              <label id="currentLocation">location 1</label>
             </div>
           </div>
         </div>

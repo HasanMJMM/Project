@@ -92,10 +92,7 @@
                   </div>
                   <div class="col col-nav-div-active">
                     <a href="./expenses.php"><img class="iconImage" src="./icons/money-check-dollar-pen-svgrepo-com.svg" /></a>
-                  </div>
-                  <div class="col col-nav-div">
-                    <a href="./profile.php"><img class="iconImage" src="./icons/profile-1336-svgrepo-com.svg" /></a>
-                  </div>
+                  </div>                  
                 </div>
               </div>
             </div>
