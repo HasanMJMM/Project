@@ -77,7 +77,7 @@
                     }
                 }
                 ?>
-                <!-- <h2 class="title">Sign in</h2>
+                <h2 class="title">Sign in</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
                     <input type="text" name="uid" placeholder="Email address">
@@ -88,8 +88,8 @@
                 </div>
                 <input type="submit" name="submit" value="Login" class="btn1">
                 <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
-            </form> -->
-            <form action="./register_user.php" method="POST" class="sign-up-form" id="signupForm">
+            </form>
+            <form action="./register_admin.php" method="POST" class="sign-up-form" id="signupForm">
                 <h2 class="title">Admin Register</h2>
                 <div class="text-center" id="alertDiv" style="font-size: 15px; color:red; font-weight:800;"></div>
                 <div class="input-field">
@@ -177,7 +177,7 @@
                         // If all validations pass, submit the form programmatically
                         // Perform AJAX request to send form data to the server
                         const formData = new FormData(form);
-                        fetch('./register_user.php', {
+                        fetch('./register_admin.php', {
                                 method: 'POST',
                                 body: formData
                             })
@@ -218,9 +218,9 @@
             </div>
             <div class="panel right-panel">
                 <div class="content">
-                    <h3>Don't have any account?</h3>
+                    <h3>Add Another Admin</h3>
                     <p>Welcome to bus tickets booking system</p>
-                    <button class="btn" id="sign-up-btn">Sign up</button>
+                    <button class="btn" id="sign-up-btn">Add</button>
                 </div>
                 <img src="signup.svg" alt="" class="image">
             </div>

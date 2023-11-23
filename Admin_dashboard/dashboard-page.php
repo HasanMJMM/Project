@@ -37,7 +37,7 @@
                 <ul class="pt-4">
                     <li><a href="dashboard-page.php" class="active">Dashboard</a></li>
                     <li><a href="View_feedback.php">View Customer's Feedback</a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="../CommanUser/sign_in.php">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -96,7 +96,7 @@
                             <p class="card-text">Manage employee here.</p>
                             <a href="employee_registration.php" class="btn btn-primary">Conductor</a>
                             <div class="py-2">
-                                <!-- <a href="../CommanUser/admin_registration.php" class="btn btn-primary"> Admin</a> -->
+                                <a href="../CommanUser/admin_registration.php" class="btn btn-primary"> Admin</a>
                             </div>
 
                         </div>
