@@ -28,7 +28,17 @@
                     <h2>Journey Ease</h2>
                 </div>
                 <div>
-                    <span>Welcome, Admin!</span>
+                    <span>Welcome..!</span><br>
+                    <?php
+
+
+// Get the current date and time
+$currentDateTime = date('Y-m-d ');
+
+// Display the current date and time
+echo " $currentDateTime";
+?>
+
                 </div>
             </div>
         </div>
