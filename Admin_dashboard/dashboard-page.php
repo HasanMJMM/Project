@@ -94,7 +94,7 @@
                                 style="width: 130px;">
                             <h5 class="card-title">Add Employee</h5>
                             <p class="card-text">Manage employee here.</p>
-                            <a href="employee_registration.php" class="btn btn-primary">Conductor</a>
+                            <a href="../CommanUser/conductor_registration.php" class="btn btn-primary">Conductor</a>
                             <div class="py-2">
                                 <a href="../CommanUser/admin_registration.php" class="btn btn-primary"> Admin</a>
                             </div>
