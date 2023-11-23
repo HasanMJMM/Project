@@ -59,7 +59,7 @@ and open the template in the editor.
                         echo '<div class="alert alert-danger" role="alert">Failed to add the Conductor.</div>';
                     }
                 }
-
+                
             }
         }
     }
