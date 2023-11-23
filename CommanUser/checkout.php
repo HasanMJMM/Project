@@ -79,7 +79,7 @@ $amount = 2000 * $count;
           <div class="text-center mb-4">
             <h3>Enter Your Email Address</h3>
           </div>
-          <form action="process_payment.php" method="POST">
+          <form action="process_payment.php" method="POST" id="paymentForm">
             <div class="form-outline mb-4">
               <input type="text" name="emailadd" class="form-control form-control-lg" placeholder="Email Address" />
             </div>
@@ -112,11 +112,80 @@ $amount = 2000 * $count;
               </div>
             </div>
             <div class="text-center mb-4">
-              <button class="btn-Checkout-form">
-                Proceed
-              </button>
+              <div class="text-center mb-4">
+                <button class="btn-Checkout-form" type="submit" id="proceedButton">Proceed</button>
+              </div>
             </div>
           </form>
+          <script>
+            document.getElementById('paymentForm').addEventListener('submit', function(event) {
+              event.preventDefault();
+
+              const form = event.target;
+              const email = form.emailadd.value.trim();
+              const cardNumber = form.cardNO.value.trim();
+              const expMonth = form.expMonth.value.trim().toLowerCase();
+              const expYear = form.expYear.value.trim();
+              const cvv = form.cvv.value.trim();
+
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              const cardNumberRegex = /^\d{16}$/;
+              const validMonths = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+
+
+              if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+              }
+              if (!cardNumberRegex.test(cardNumber)) {
+                alert('Card number should be 16 digits.');
+                return false;
+              }
+              if (!validMonths.includes(expMonth)) {
+                alert('Please enter a valid month (e.g., January, February, etc.).');
+                return false;
+              }
+              if (parseInt(expYear) <= 2022) {
+                alert('Please enter a year greater than 2022.');
+                return false;
+              }
+              if (!/^\d{3}$/.test(cvv)) {
+                alert('CVV should be 3 digits.');
+                return false;
+              }
+
+              // If all validations pass, submit the form data using Fetch API
+              if (
+                emailRegex.test(email) &&
+                cardNumberRegex.test(cardNumber) &&
+                validMonths.includes(expMonth) &&
+                parseInt(expYear) > 2022 &&
+                /^\d{3}$/.test(cvv)
+              ) {
+                const formData = new FormData(form);
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                  })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Network response was not ok.');
+                    }
+                    return response.text();
+                  })
+                  .then(data => {
+                    console.log('Form submitted successfully:', data);
+                    window.location.href = 'varifyOTP.php';
+                  })
+                  .catch(error => {
+                    console.error('There was a problem with form submission:', error);
+                    // Handle error as needed
+                  });
+              }
+            });
+          </script>
+
+
         </div>
       </div>
     </div>
@@ -124,132 +193,131 @@ $amount = 2000 * $count;
   <!-- Check out -->
   <!--Footer Start-->
   <footer class="border-top footerbackground">
+    <div class="row">
+      <div class="col-12 col-md ">
         <div class="row">
-            <div class="col-12 col-md ">
-                <div class="row">
-                    <span>
-                        <img class="mb-2" src="./Images/Logo.png" alt="" width="125" height="87">
-                    </span>
-                    <span>
-                        <p style="color: pink;">Make Your Journey Easy</p>
+          <span>
+            <img class="mb-2" src="./Images/Logo.png" alt="" width="125" height="87">
+          </span>
+          <span>
+            <p style="color: pink;">Make Your Journey Easy</p>
 
-                    </span>
-                    <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
-                </div>
-
-                <div class="row " style="margin-top: -2rem;">
-                    <div class="container firstCol">
-                        <div class="col">
-                            <a class="nav-link" aria-current="page" href="https://www.facebook.com">
-                                <span class="coustomIcon SMLF">
-                                    <ion-icon name="logo-facebook">
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="nav-link" aria-current="page" href="https://www.instagram.com">
-                                <span class="coustomIcon SMLI">
-                                    <ion-icon name="logo-instagram">
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a class="nav-link" aria-current="page" href="https://www.whatsapp.com">
-                                <span class="coustomIcon SMLW">
-                                    <ion-icon name="logo-whatsapp">
-                                </span>
-                            </a>
-                        </div>
-                        <div class="col ">
-                            <a class="nav-link" aria-current="page" href="https://www.twitter.com">
-                                <span class="coustomIcon SMLT">
-                                    <ion-icon name="logo-twitter">
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-md">
-                <h5 style="color: pink;"">Links</h5>
-                <ul class=" list-unstyled text-small">
-                    <li class="mb-1"><a class="nav-link" aria-current="page" href="commanUser.php">
-                            <span class="coustomIcon">
-                                <ion-icon name="home-outline"></ion-icon>
-                            </span>
-                            <span class="coustomText">
-                                Home
-                            </span>
-                        </a>
-                    </li>
-                    <li class="mb-1"> <a class="nav-link" aria-current="page" href="aboutus.php">
-                            <span class="coustomIcon">
-                                <ion-icon name="accessibility-outline"></ion-icon>
-                            </span>
-
-                            <span class="coustomText">About Us </span></a>
-
-
-
-                    </li>
-                    <li class="mb-1">
-                        <a class="nav-link" aria-current="page" href="Contactus.php">
-                            <span class="coustomIcon">
-                                <ion-icon name="headset-outline"></ion-icon>
-                            </span>
-                            <span class="coustomText">
-                                Contact Us
-                            </span>
-                        </a>
-                    </li>
-                    </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5 style="color: pink;">Policies</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy
-                            Policy</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms &
-                            Conditions</a></li>
-                    <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket
-                            Policy</a></li>
-                </ul>
-            </div>
-            <div class="col-6 col-md">
-                <h5 style="color: pink;">Contact us</h5>
-                <ul class="list-unstyled text-small">
-                    <li class="mb-1"><a class="link-secondary text-decoration-none listtext"
-                            href="../contactus/index.php">
-                            <span class="coustomIcon">
-                                <ion-icon name="location-outline"></ion-icon>
-                            </span>
-                            <span class="coustomText listtext2">
-                                No2, Passara Raod, Badulla.
-                            </span>
-                        </a>
-                    </li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
-                            <span class="coustomIcon">
-                                <ion-icon name="call-outline"></ion-icon>
-                            </span>
-                            <span class="coustomText listtext2">
-                                +94123987456
-                            </span>
-                        </a>
-                    </li>
-                    <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
-                            <span class="coustomIcon">
-                                <ion-icon name="at-outline"></ion-icon>
-                            </span>
-                            <span class="coustomText listtext2">
-                                EaseTravales@Bus.com
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+          </span>
+          <small class="d-block mb-3 text-body-secondary">&copy; 2017–2023</small>
         </div>
-    </footer>
+
+        <div class="row " style="margin-top: -2rem;">
+          <div class="container firstCol">
+            <div class="col">
+              <a class="nav-link" aria-current="page" href="https://www.facebook.com">
+                <span class="coustomIcon SMLF">
+                  <ion-icon name="logo-facebook">
+                </span>
+              </a>
+            </div>
+            <div class="col">
+              <a class="nav-link" aria-current="page" href="https://www.instagram.com">
+                <span class="coustomIcon SMLI">
+                  <ion-icon name="logo-instagram">
+                </span>
+              </a>
+            </div>
+            <div class="col">
+              <a class="nav-link" aria-current="page" href="https://www.whatsapp.com">
+                <span class="coustomIcon SMLW">
+                  <ion-icon name="logo-whatsapp">
+                </span>
+              </a>
+            </div>
+            <div class="col ">
+              <a class="nav-link" aria-current="page" href="https://www.twitter.com">
+                <span class="coustomIcon SMLT">
+                  <ion-icon name="logo-twitter">
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md">
+        <h5 style="color: pink;"">Links</h5>
+                <ul class=" list-unstyled text-small">
+          <li class="mb-1"><a class="nav-link" aria-current="page" href="commanUser.php">
+              <span class="coustomIcon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="coustomText">
+                Home
+              </span>
+            </a>
+          </li>
+          <li class="mb-1"> <a class="nav-link" aria-current="page" href="aboutus.php">
+              <span class="coustomIcon">
+                <ion-icon name="accessibility-outline"></ion-icon>
+              </span>
+
+              <span class="coustomText">About Us </span></a>
+
+
+
+          </li>
+          <li class="mb-1">
+            <a class="nav-link" aria-current="page" href="Contactus.php">
+              <span class="coustomIcon">
+                <ion-icon name="headset-outline"></ion-icon>
+              </span>
+              <span class="coustomText">
+                Contact Us
+              </span>
+            </a>
+          </li>
+          </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5 style="color: pink;">Policies</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link text-decoration-none listtext" href="privacyPolicy.php">privacy
+              Policy</a></li>
+          <li class="mb-1"><a class="link text-decoration-none listtext" href="Terms.php">Terms &
+              Conditions</a></li>
+          <li class="mb-1"><a class="link text-decoration-none listtext" href="TicketPolicy.php">Ticket
+              Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5 style="color: pink;">Contact us</h5>
+        <ul class="list-unstyled text-small">
+          <li class="mb-1"><a class="link-secondary text-decoration-none listtext" href="../contactus/index.php">
+              <span class="coustomIcon">
+                <ion-icon name="location-outline"></ion-icon>
+              </span>
+              <span class="coustomText listtext2">
+                No2, Passara Raod, Badulla.
+              </span>
+            </a>
+          </li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
+              <span class="coustomIcon">
+                <ion-icon name="call-outline"></ion-icon>
+              </span>
+              <span class="coustomText listtext2">
+                +94123987456
+              </span>
+            </a>
+          </li>
+          <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">
+              <span class="coustomIcon">
+                <ion-icon name="at-outline"></ion-icon>
+              </span>
+              <span class="coustomText listtext2">
+                EaseTravales@Bus.com
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
 
   <!--Footer End-->
 
