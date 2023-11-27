@@ -17,8 +17,8 @@
 
 
     <div class="text-center">
-        <form action="./register_admin.php" method="POST" class="sign-in-form" style="width:20rem" id="signupForm">
-            <h2 class="title" style="color: navy blue;">Admin Register</h2>
+        <form action="./register_conductor.php" method="POST" class="sign-in-form" style="width:20rem" id="signupForm">
+            <h2 class="title" style="color: navy blue;">Conductor Register</h2>
 
             <div class="text-center" id="alertDiv" style="font-size: 15px; color:red; font-weight:800;"></div>
             <div class="input-field">
@@ -106,7 +106,7 @@
                     // If all validations pass, submit the form programmatically
                     // Perform AJAX request to send form data to the server
                     const formData = new FormData(form);
-                    fetch('./register_admin.php', {
+                    fetch('./register_conductor.php', {
                         method: 'POST',
                         body: formData
                     })

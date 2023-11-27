@@ -94,11 +94,11 @@
                 <div class="text-center" id="alertDiv" style="font-size: 15px; color:red; font-weight:800;"></div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="name" placeholder="First name">
+                    <input type="text" name="name" placeholder="First Name">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="uid" placeholder="Username" required>
+                    <input type="text" name="uid" placeholder="Last Name" required>
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
