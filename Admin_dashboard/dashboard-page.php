@@ -28,17 +28,7 @@
                     <h2>Journey Ease</h2>
                 </div>
                 <div>
-                    <span>Welcome..!</span><br>
-                    <?php
-
-
-// Get the current date and time
-$currentDateTime = date('Y-m-d ');
-
-// Display the current date and time
-echo " $currentDateTime";
-?>
-
+                    <span>Welcome, Admin!</span>
                 </div>
             </div>
         </div>
@@ -47,7 +37,7 @@ echo " $currentDateTime";
                 <ul class="pt-4">
                     <li><a href="dashboard-page.php" class="active">Dashboard</a></li>
                     <li><a href="View_feedback.php">View Customer's Feedback</a></li>
-                    <li><a href="../CommanUser/sign_in.php">Logout</a></li>
+                    <li><a href="#">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -104,9 +94,9 @@ echo " $currentDateTime";
                                 style="width: 130px;">
                             <h5 class="card-title">Add Employee</h5>
                             <p class="card-text">Manage employee here.</p>
-                            <a href="../CommanUser/conductor_registration.php" class="btn btn-primary">Conductor</a>
+                            <a href="employee_registration.php" class="btn btn-primary">Conductor</a>
                             <div class="py-2">
-                                <a href="../CommanUser/admin_registration.php" class="btn btn-primary"> Admin</a>
+                                <!-- <a href="../CommanUser/admin_registration.php" class="btn btn-primary"> Admin</a> -->
                             </div>
 
                         </div>
