@@ -117,7 +117,7 @@ $amount = 2000 * $count;
               </div>
             </div>
           </form>
-          <!-- <script>
+          <script>
             document.getElementById('paymentForm').addEventListener('submit', function(event) {
               event.preventDefault();
 
@@ -183,7 +183,7 @@ $amount = 2000 * $count;
                   });
               }
             });
-          </script> -->
+          </script>
 
 
         </div>
