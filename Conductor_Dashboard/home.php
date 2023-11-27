@@ -320,8 +320,8 @@ $userID = $_SESSION["userid"];
         <div class="row">
           <div class="text-center" style="
                   background-color: #000032;
-                  width: full%;
-                  padding: 5%;
+                  width: 8rem;
+                  padding: 15%;
                   border-radius: 5px;
                   color: #f3c001;
                 ">
