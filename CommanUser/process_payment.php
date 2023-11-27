@@ -78,42 +78,42 @@ if ($stmt) {
     $stmt->bind_param("ssssssssssss", $paymentID, $ticketID, $userID, $email, $cardName, $cardNumber, $expMonth, $expYear, $cvv, $amount, $otp, $status);
 
     if ($stmt->execute()) {
-        $_SESSION['payID'] = $paymentID;
-        header("Location: ./verifyOTP.php");
-        exit(); // Ensuring script stops here
-        // // Send email
-        // require './mail/Exception.php';
-        // require './mail/PHPMailer.php';
-        // require './mail/SMTP.php';
+        // Send email
+        require './mail/Exception.php';
+        require './mail/PHPMailer.php';
+        require './mail/SMTP.php';
 
-        // $mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
 
-        // // Server settings
-        // $mail->SMTPDebug = 0; // Enable verbose debug output
-        // $mail->isSMTP(); // Send using SMTP
-        // $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
-        // $mail->SMTPAuth = true; // Enable SMTP authentication
-        // $mail->Username = 'journeyeasetravels@gmail.com'; // SMTP username
-        // $mail->Password = 'beuo pfsw qzdl qqoq'; // SMTP password
-        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable implicit TLS encryption
-        // $mail->Port = 465; // TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        // Server settings
+        $mail->SMTPDebug = 0; // Enable verbose debug output
+        $mail->isSMTP(); // Send using SMTP
+        $mail->Host = 'smtp.gmail.com'; // Set the SMTP server to send through
+        $mail->SMTPAuth = true; // Enable SMTP authentication
+        $mail->Username = 'journeyeasetravels@gmail.com'; // SMTP username
+        $mail->Password = 'beuo pfsw qzdl qqoq'; // SMTP password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable implicit TLS encryption
+        $mail->Port = 465; // TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-        // // Recipients
-        // $mail->setFrom('journeyeasetravels@gmail.com');
-        // $mail->addAddress($email); // Add a recipient
+        // Recipients
+        $mail->setFrom('journeyeasetravels@gmail.com');
+        $mail->addAddress($email); // Add a recipient
         // Name is optional
 
         // Content
-        // $mail->isHTML(true); // Set email format to HTML
-        // $mail->Subject = 'Journey Ease Verification OTP';
-        // $message = "Dear " . $cardName . "You Booked seats through our system <br><br> That is Total cost of " .  $amount . "Rupees will deduct from your debit card <br><br> This Your OTP pin  " . $otp . " You can complete your payment using this OTP number<br><br> Don't share this with anyone";
-        // $mail->Body = $message;
+        $mail->isHTML(true); // Set email format to HTML
+        $mail->Subject = 'Journey Ease Verification OTP';
+        $message = "Dear " . $cardName . "You Booked seats through our system <br><br> That is Total cost of " .  $amount . "Rupees will deduct from your debit card <br><br> This Your OTP pin  " . $otp . " You can complete your payment using this OTP number<br><br> Don't share this with anyone";
+        $mail->Body = $message;
 
-        // try {
-        //     $mail->send();
-        // } catch (Exception $e) {
-        //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-        // }
+        try {
+            $mail->send();
+            $_SESSION['payID'] = $paymentID;
+            header("Location: varifyOTP.php");
+            exit(); // Ensuring script stops here
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     } else {
         echo "Error: " . $stmt->error;
     }
